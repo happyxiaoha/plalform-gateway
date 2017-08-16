@@ -1,0 +1,10 @@
+127.0.0.1 localhost caliconode01
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 caliconode01
+172.16.49.70 iZ2ze5br1kzrdjzdlc2k3vZ caliconode01
+172.16.49.68 registry.paas
+172.16.49.68 registryPublic.paas
+
+172.16.49.70 api.citysdk1.cn
+172.16.49.70 api.quanguocitysdk1.cn
+172.16.49.70 api.guangzhou.cn
+172.16.49.70 gz-api.guangzhou.cn

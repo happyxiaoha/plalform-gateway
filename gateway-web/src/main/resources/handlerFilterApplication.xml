@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<steps>
+	<step groupname="preFilter" desc="数据预处理" isskip="false">
+		<substep classname="TestDataFilterImpl" desc="如为测试数据，则不走如下鉴权" isskip="false" />
+		<substep classname="preHandlerFilter" desc="数据预处理阶段" isskip="false" />
+	</step>
+
+
+	<step groupname="dataFilter" desc="数据过滤" isskip="false">
+		<substep classname="CallerRequestDataValidFilter" desc="调用者请求数据合法性校验"
+			isskip="false" />
+	</step>
+	<!-- 疑问：<1数云-网关代码交接.doc>中提到的资源? -->
+	<step groupname="logFilter" desc="流水记录" isskip="false">
+		<substep classname="LogFilterImpl" desc="流水记录" isskip="false" />
+	</step>
+	<step groupname="blackListFilter" desc="黑名单" isskip="false">
+		<substep classname="MultiSiteFilterImpl" desc="检查是否是多站点推广"
+			isskip="false"></substep>
+		<substep classname="IPBlackFilterImpl" desc="ip黑名单" isskip="false" />
+		<substep classname="AppkeyBlackAuthFilterImpl" desc="appkey黑名单"
+			isskip="false" />
+		<substep classname="APIAuthFilterImpl" desc="api黑白名单" isskip="false" />
+	</step>
+	<step groupname="whiteListFilter" desc="白名单" isskip="false">
+		<substep classname="IPWhiteFilterImpl" desc="白名单" isskip="false" />
+	</step>
+	<step groupname="packageFilter" desc="签名，调用" isskip="false">
+		<substep classname="AppKeyAuthFilterImpl" desc="鉴权_appkey_签名验证"
+			isskip="false" />
+		<!-- 如下这个已废弃 -->
+		<!-- <substep classname="APICallAuthFilterImpl" desc="api调用权限 service_key/service_call" 
+			isskip="false" /> -->
+	</step>
+	<!-- 如下这个为订单相关的 -->
+	<step groupname="callandlogFilter" desc="套餐规则已用完的数据转历史" isskip="false">
+		<substep classname="PackageToHistoryFilter" desc="套餐规则已用完则转存历史表"
+			isskip="false" />
+		<substep classname="MiscoServiceFilter" desc="微服务鉴权ticket token等的校验"
+			isskip="false" />
+		<!-- 费用计费 -->
+		<substep classname="CallerRequestFilter" desc="记录api/service/data调用信息"
+			isskip="false" />
+		<substep classname="CallerMaxVisitOfDayFilter" desc="用户最大日访问量过滤"
+			isskip="false" />
+		<substep classname="CacheFilter" desc="数据缓存处理" isskip="false" />
+	</step>
+</steps>

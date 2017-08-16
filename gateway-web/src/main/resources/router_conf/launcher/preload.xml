@@ -1,0 +1,3 @@
+<preloaders>
+<preloader impl="com.dc.appengine.router.preloader.InitRouteTablePreloader" priority="1"/>
+</preloaders>

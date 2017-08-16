@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<client>
+<!--   <inbox> 
+      <ServiceName>updatepriority</ServiceName>
+      <JNDIContextFactory>com.dc.messageclient.jndi.TopicInitialContextFactory</JNDIContextFactory>
+      <ProviderURL>tcp://127.0.0.1:4141</ProviderURL>
+      <TopicConnectionFactory>ConnectionFactory</TopicConnectionFactory>
+      <TopicName>updatepriority</TopicName>
+      <IsDurable>false</IsDurable>
+  </inbox>  -->
+  <inbox>
+      <ServiceName>router</ServiceName>
+      <JNDIContextFactory>com.dc.messageclient.jndi.TopicInitialContextFactory</JNDIContextFactory>
+      <ProviderURL>tcp://127.0.0.1:4141</ProviderURL>
+      <TopicConnectionFactory>ConnectionFactory</TopicConnectionFactory>
+      <TopicName>router</TopicName>
+      <IsDurable>false</IsDurable>
+  </inbox>
+ </client>
+  
+  

@@ -1,0 +1,42 @@
+--- # webserver
+server:
+  port: 8080  #请一定放8080
+  context-path: /
+
+--- # eureka
+spring:
+  application:
+    name: gateway                                              #当前模块名
+    groupName: mscx                                            #当前项目名
+
+eureka:
+  client:
+    registerWithEureka: true                                   #改为false时，服务将不会注册到Eureka
+    fetchRegistry: true                                        #改为false时，将不会从Server上拉取注册信息
+    registry-fetch-interval-seconds: 10                        #生产环境上，这个值得设为30
+    initial-instance-info-replication-interval-seconds: 5      #生产环境上，这个值得设为10
+    serviceUrl:
+      defaultZone: http://mscx-eureka-server-mgr.eastdc.cn:82/eureka/,http://mscx-eureka-server-mgr-2.eastdc.cn:82/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10                       #生产环境上，这个值得设为30
+    lease-expiration-duration-in-seconds: 10                    #生产环境上，这个值得设为30
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+    registrySyncRetries: 0
+
+--- # platform
+platform:
+  invokeTrace:
+    enabled: true
+    url: http://invoke-trace2.eastdc.cn:82/invoke.do  		   #调用链 相关的
+  ribbon:
+    httpClient:
+      timeToLiveInSeconds: 30                                  #长连接保持时间，默认30秒
+      maxConnectionsTotal: 100                                 #总连接数，默认100
+      maxConcurrentPerRoute: 30                                #同路由的并发数，默认100
+      maxConnectionTimeoutInSeconds: 1                         #连接超时时间，默认3秒
+      maxReadTimeoutInSeconds: 5                               #数据读取超时时间，默认10秒
+      maxRetryAttempts: 3                                      #API访问失败时的重试次数，默认3次

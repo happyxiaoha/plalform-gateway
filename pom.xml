@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.dceast.platform</groupId>
+    <artifactId>platform-gateway</artifactId>
+    <version>1.8.0</version>
+    <name>platform-gateway</name>
+    <packaging>pom</packaging>
+ 	<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.2.RELEASE</version>
+    </parent>
+    <description>gateway服务平台</description>
+    <inceptionYear>2015-2020</inceptionYear>
+    <organization>
+        <name>神州数码东区技术中心</name>
+        <url>http://www.dceast.cn</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>zhangwl</id>
+            <name>zhangwl</name>
+            <email>zhangweilai@126.com</email>
+            <organization>dceast</organization>
+            <roles>
+                <role>Project leader</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <modules>
+    	<module>gateway-common</module>
+        <module>gateway-web</module>
+        <module>common-kit</module>
+    </modules>
+
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>4.12</junit.version>
+        <platform-gateway.version>${project.version}</platform-gateway.version>
+    </properties>
+    
+	<dependencies>
+		<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+	</dependencies>
+	
+     <!--====================================================== 
+	 profile定义 
+	 
+	           约定如下：1. 为了不与spring的xml配置文件中${}的属性产生混淆与冲突。
+	             profile中定义的属性必须已pf开头，代表此属性是mavenprofile中定义的。
+	          
+	====================================================== -->
+	 <profiles>
+	 
+	 	<!--****** 平台_开发环境  ****** -->
+     	<profile>
+        	<id>platform_dev</id>
+            <!-- <properties>
+            	<pf.mongodb.oss.host>192.168.111.155</pf.mongodb.oss.host>
+				<pf.mongodb.oss.dbName>platform-oss</pf.mongodb.oss.dbName>
+				<pf.mongodb.oss.userName>platform-oss</pf.mongodb.oss.userName>
+				<pf.mongodb.oss.password>dc202152</pf.mongodb.oss.password>
+            </properties> -->
+            
+            <activation>
+            	<activeByDefault>true</activeByDefault>
+            </activation>
+         </profile>
+         
+         <!--****** 升级部署资源包环境  ****** -->
+         <profile>
+        	<id>platform_upgrade</id>
+        	<properties>
+            	<pf.mongodb.oss.host>manual modification</pf.mongodb.oss.host>
+				<pf.mongodb.oss.dbName>manual modification</pf.mongodb.oss.dbName>
+				<pf.mongodb.oss.userName>manual modification</pf.mongodb.oss.userName>
+				<pf.mongodb.oss.password>manual modification</pf.mongodb.oss.password>
+			</properties>
+         </profile>
+         
+  </profiles>
+  
+    <prerequisites>
+        <maven>3.3.3</maven>
+    </prerequisites>
+
+</project>
