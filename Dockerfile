@@ -1,5 +1,4 @@
-FROM registry.paas:443/admin/gateway:4.0
-RUN yum install -y openssl
+FROM registry.paas:443/admin/gateway:5.0
 ADD server.crt /home/liycq/lua/nginx1.10.2/conf
 ADD server.key /home/liycq/lua/nginx1.10.2/conf
 ADD nginx /home/liycq/lua/nginx1.10.2/sbin/
